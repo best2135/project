@@ -1,0 +1,36 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Load the dataset
+weather_data = pd.read_csv('final_weather_data.csv')
+
+# Line graph for Temperature over Time
+plt.figure(figsize=(10, 6))
+plt.plot(weather_data['Date'], weather_data['Temperature (°C)'], label='Temperature', color='orange')
+plt.title('Temperature Trends Over Time')
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.xticks(rotation=45)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Bar chart for Weather Conditions frequency
+plt.figure(figsize=(10, 6))
+weather_data['Weather_Condition'].value_counts().plot(kind='bar', color='skyblue')
+plt.title('Frequency of Weather Conditions')
+plt.xlabel('Weather Condition')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.show()
+
+# Scatter plot for Temperature vs Humidity
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=weather_data, x='Temperature (°C)', y='Humidity (%)', hue='Rain_Presence')
+plt.title('Temperature vs Humidity with Rain Presence')
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Humidity (%)')
+plt.legend(title='Rain Presence', loc='best')
+plt.tight_layout()
+plt.show()
